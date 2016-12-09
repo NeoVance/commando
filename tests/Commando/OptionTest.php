@@ -17,6 +17,14 @@ class OptionTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($name, $option->getName());
     }
 
+    public function testGetDescription()
+    {
+        $description = "I'm cool";
+        $option = new Option("f");
+        $option->setDescription($description);
+        $this->assertEquals($description, $option->getDescription());
+    }
+
     public function testAnnonymousOption()
     {
         $option = new Option(0);
@@ -149,11 +157,31 @@ class OptionTest extends \PHPUnit_Framework_TestCase
     {
         $option = new Option('f');
         $option->setNeeds('foo');
+        $neededOption = new Option('foo');
+        $neededOption->setValue(true);
         $optionSet = array(
-            'foo' => new Option('foo')
+            'foo' => $neededOption,
         );
 
         $this->assertTrue($option->hasNeeds($optionSet));
+    }
+
+    /**
+     * Test hasNeeds when requirements are not met.
+     * @test
+     */
+    public function testOptionRequiresNotMet()
+    {
+        $option = new Option('f');
+        $option->setNeeds('foo');
+        $optionSet = array(
+            'foo' => new Option('foo'),
+        );
+
+        $expected = array(
+            'foo',
+        );
+        $this->assertEquals($expected, $option->hasNeeds($optionSet));
     }
 
     // Providers
