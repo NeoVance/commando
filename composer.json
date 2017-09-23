@@ -1,22 +1,39 @@
 {
-    "name": "nategood/commando",
+    "name": "neovance/commando",
     "description": "PHP CLI Commando Style",
-    "homepage": "http://github.com/nategood/commando",
+    "homepage": "https://github.com/NeoVance/commando",
     "license": "MIT",
     "keywords": ["cli", "command line", "command", "command line interface", "scripting", "automation"],
     "authors": [
         {
             "name": "Nate Good",
             "email": "me@nategood.com"
+        },
+        {
+            "name": "Devon Bagley",
+            "email": "devon.bagley@gmail.com"
         }
     ],
     "require": {
         "php": ">=5.3",
-        "kevinlebrun/colors.php": "~0.2"
-
+        "kevinlebrun/colors.php": "~0.2",
+        "neovance/phredux": "dev-master"
     },
     "version": "0.2.9",
     "autoload": {
-        "psr-0": {"Commando": "src/"}
-    }
+        "psr-4": {
+            "Commando\\": "src/"
+        }
+    },
+    "require-dev": {
+        "codeception/codeception": "^2.3",
+        "codeception/specify": "^0.4.6",
+        "codeception/verify": "0.3.3"
+    },
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/NeoVance/Phreedux"
+        }
+    ]
 }
